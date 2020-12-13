@@ -4,6 +4,7 @@ from functools import wraps
 import requests
 import atexit
 from flask import Flask, render_template, request, jsonify, escape
+from flask_cors import CORS, cross_origin
 from flask_autoindex import AutoIndex
 import giphypop
 
@@ -12,6 +13,7 @@ from deezer import deezer_search
 from configuration import config
 
 app = Flask(__name__)
+CORS(app)
 auto_index = AutoIndex(app, config["download_dirs"]["base"], add_url_rules=False)
 auto_index.add_icon_rule('music.png', ext='m3u8')
 
