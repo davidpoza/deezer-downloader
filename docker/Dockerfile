@@ -5,11 +5,12 @@ RUN apt-get update  -yq && \
     apt-get install -yq vim tmux git gcc ffmpeg \ 
                         python3-virtualenv python3-dev \
                         mpd ncmpcpp
-RUN git clone https://github.com/kmille/deezer-downloader.git /opt/deezer
+RUN git clone https://github.com/davidpoza/deezer-downloader.git /opt/deezer
 RUN python3 -m virtualenv -p python3 /opt/deezer/app/venv
 RUN /bin/bash -c "source /opt/deezer/app/venv/bin/activate && \
     pip install -r /opt/deezer/requirements.txt && \
-    pip install -U youtube-dl"
+    pip install -U youtube-dl && \
+	pip install -U flask-cors"
 RUN cp /opt/deezer/app/settings.ini.example /opt/deezer/app/settings.ini
 RUN sed -i 's/.*host = 127.0.0.1.*/host = 0.0.0.0/' /opt/deezer/app/settings.ini
 RUN sed -i 's,.*command = /usr/bin/youtube-dl.*,command = /opt/deezer/app/venv/bin/youtube-dl,' /opt/deezer/app/settings.ini
