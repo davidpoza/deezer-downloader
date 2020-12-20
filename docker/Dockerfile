@@ -1,4 +1,4 @@
-FROM debian:buster-20200514
+FROM arm64v8/debian:buster-20200514-slim
 MAINTAINER kmille@androidloves.me
 
 RUN apt-get update  -yq && \
