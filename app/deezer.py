@@ -441,6 +441,7 @@ def deezer_search(search, search_type):
             i['album'] = item['ALB_TITLE']
             i['album_id'] = item['ALB_ID']
             i['artist'] = item['ART_NAME']
+            i['duration'] = item['DURATION']
             i['preview_url'] = next(media['HREF'] for media in item['MEDIA'] if media['TYPE'] == 'preview')
 
         return_nice.append(i)
